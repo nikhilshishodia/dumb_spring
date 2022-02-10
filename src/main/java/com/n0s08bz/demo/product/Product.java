@@ -13,10 +13,7 @@ import java.time.LocalDateTime;
 import java.util.Random;
 
 @SolrDocument(collection = "product")
-@Entity
-@Table
 public class Product {
-    @Id
     @SequenceGenerator(
             name = "product_sequence",
             sequenceName = "product_sequence",
@@ -26,7 +23,8 @@ public class Product {
             strategy = GenerationType.SEQUENCE,
             generator = "product_sequence"
     )
-    @Indexed(name = "id", type = "string")
+    @Id
+    @Indexed(name = "id", type = "long")
     private Long id;
     @Indexed(name = "name", type = "string")
     private String name;
@@ -42,9 +40,9 @@ public class Product {
     private String currency;
     @Indexed(name = "price", type = "float")
     private float price;
-    @Field/*(name = "localDateTime", type = "local-datetime")*/
+    @Indexed(name = "localDateTime", type = "local-datetime")
     private LocalDateTime createdDateTime;
-    @Field/*(name = "modifiedDateTime", type = "local-datetime")*/
+    @Indexed(name = "modifiedDateTime", type = "local-datetime")
     private LocalDateTime modifiedDateTime;
 
     public Product() {

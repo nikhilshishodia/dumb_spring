@@ -15,11 +15,6 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping
-    public Optional<List<Product>> getProduct(@RequestParam String name){
-        return productService.getProduct(name);
-    }
-
     @GetMapping(value = "/solr")
     public Optional<List<Product>> getProductSolr(@RequestParam String name){
         return productService.getProductSolr(name);
